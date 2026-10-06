@@ -1,6 +1,6 @@
 {
   "name": "@faktry/mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "mcpName": "io.github.faktry/faktry-mcp",
   "description": "stdio bridge to the hosted faktry MCP server. Generate and edit images, video, audio, and PDFs from any MCP client.",
   "keywords": ["mcp", "model-context-protocol", "faktry", "image-generation", "video-generation", "audio", "pdf"],
