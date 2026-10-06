@@ -1,14 +1,33 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.schuettla/faktry-mcp",
+  "name": "io.github.faktry/faktry-mcp",
   "title": "faktry",
   "description": "Official faktry MCP server. Generate and edit images, videos, audio, and PDFs from Claude, Cursor, and any other MCP-compatible client.",
   "version": "0.1.0",
   "websiteUrl": "https://faktry.ai/mcp",
   "repository": {
-    "url": "https://github.com/schuettla/faktry-mcp",
+    "url": "https://github.com/faktry/faktry-mcp",
     "source": "github"
   },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@faktry/mcp",
+      "version": "0.1.0",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "FAKTRY_API_KEY",
+          "description": "faktry API key from https://faktry.ai/api/keys. If unset, the bridge falls back to browser OAuth.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ],
   "remotes": [
     {
       "type": "streamable-http",

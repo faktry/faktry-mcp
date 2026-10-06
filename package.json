@@ -1,0 +1,35 @@
+{
+  "name": "@faktry/mcp",
+  "version": "0.1.0",
+  "mcpName": "io.github.faktry/faktry-mcp",
+  "description": "stdio bridge to the hosted faktry MCP server. Generate and edit images, video, audio, and PDFs from any MCP client.",
+  "keywords": ["mcp", "model-context-protocol", "faktry", "image-generation", "video-generation", "audio", "pdf"],
+  "license": "MIT",
+  "homepage": "https://faktry.ai/mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faktry/faktry-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/faktry/faktry-mcp/issues"
+  },
+  "type": "module",
+  "bin": {
+    "faktry-mcp": "bin/faktry-mcp.js"
+  },
+  "files": [
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "mcp-remote": "^0.14.3"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

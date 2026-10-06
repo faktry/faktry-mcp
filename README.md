@@ -35,7 +35,7 @@
 
 The **faktry MCP server** exposes the full faktry toolkit — over 70 tools spanning image, video, audio, PDF, and 3D generation and editing — to any client that speaks the [Model Context Protocol](https://modelcontextprotocol.io). Generate a product shot, cut it into a UGC-style video with a voiceover, subtitle it, and export a thumbnail sheet, all without leaving the chat.
 
-- <img src="assets/icon_black.png" width="14" align="top"> **Hosted, remote.** Connect to `https://faktry.ai/api/mcp` — no local server to run.
+- <img src="assets/icon_black.png" width="14" align="top"> **Hosted, remote.** Connect to `https://faktry.ai/api/mcp` — no local server to run. stdio-only clients can use the `npx -y @faktry/mcp` bridge.
 - **OAuth or API key, your choice.** One-click connect from Claude.ai, Claude Desktop, Cursor, and Hermes, or drop a static API key into any config-based client.
 - **Async by default.** Long-running jobs (video, some image/audio) return a `job_id` immediately; poll `faktry_job_status` until it's ready.
 - **A library that remembers.** Save any result with `faktry_library_save` and pull it back into a later session with `faktry_library_list`.
@@ -206,15 +206,31 @@ Verify with `codex mcp list`.
 </details>
 
 <details>
-<summary><strong>Zed</strong></summary>
+<summary><strong>stdio clients (npx)</strong> <sub>— Zed, older Claude Desktop configs, and anything without remote MCP</sub></summary>
 
-Zed only speaks stdio natively, so this bridges through <code>mcp-remote</code>:
+The [`@faktry/mcp`](https://www.npmjs.com/package/@faktry/mcp) package is a thin stdio bridge to the hosted server. Requires Node 18+.
+
+Generic form:
 
 ```bash
-npm install -g mcp-remote
+FAKTRY_API_KEY=YOUR_API_KEY_HERE npx -y @faktry/mcp
 ```
 
-Add to your Zed `settings.json` (`%APPDATA%\Zed\settings.json` on Windows):
+Claude Desktop (`claude_desktop_config.json`) and most other `mcpServers` clients:
+
+```json
+{
+  "mcpServers": {
+    "faktry": {
+      "command": "npx",
+      "args": ["-y", "@faktry/mcp"],
+      "env": { "FAKTRY_API_KEY": "YOUR_API_KEY_HERE" }
+    }
+  }
+}
+```
+
+Zed (`settings.json`, `%APPDATA%\Zed\settings.json` on Windows):
 
 ```json
 {
@@ -222,11 +238,14 @@ Add to your Zed `settings.json` (`%APPDATA%\Zed\settings.json` on Windows):
     "faktry": {
       "source": "custom",
       "command": "npx",
-      "args": ["mcp-remote", "https://faktry.ai/api/mcp", "--header", "Authorization: Bearer YOUR_API_KEY_HERE"]
+      "args": ["-y", "@faktry/mcp"],
+      "env": { "FAKTRY_API_KEY": "YOUR_API_KEY_HERE" }
     }
   }
 }
 ```
+
+Leave `FAKTRY_API_KEY` out to sign in through the browser (OAuth) instead.
 
 </details>
 
