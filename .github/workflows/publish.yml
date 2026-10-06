@@ -2,12 +2,16 @@ name: Publish
 
 # Publishes to npm via trusted publishing (OIDC, no long-lived token), then to the MCP Registry.
 # Trigger: publish a GitHub release whose tag matches package.json, e.g. v0.1.0.
+#
+# Manual run (Actions tab -> Run workflow) skips npm and only publishes server.json to the MCP Registry.
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   npm:
+    if: github.event_name == 'release'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -34,6 +38,7 @@ jobs:
 
   registry:
     needs: npm
+    if: ${{ always() && (needs.npm.result == 'success' || needs.npm.result == 'skipped') }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
