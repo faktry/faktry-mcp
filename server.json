@@ -5,6 +5,20 @@
   "description": "Official faktry MCP server: generate and edit images, video, audio, and PDFs.",
   "version": "0.1.1",
   "websiteUrl": "https://faktry.ai/mcp",
+  "icons": [
+    {
+      "src": "https://faktry.ai/icon_black.png",
+      "mimeType": "image/png",
+      "sizes": ["143x173"],
+      "theme": "light"
+    },
+    {
+      "src": "https://faktry.ai/icon_white.png",
+      "mimeType": "image/png",
+      "sizes": ["143x173"],
+      "theme": "dark"
+    }
+  ],
   "repository": {
     "url": "https://github.com/faktry/faktry-mcp",
     "source": "github"
