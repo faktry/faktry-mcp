@@ -3,7 +3,7 @@
   "name": "io.github.faktry/faktry-mcp",
   "title": "faktry",
   "description": "Official faktry MCP server: generate and edit images, video, audio, and PDFs.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "websiteUrl": "https://faktry.ai/mcp",
   "icons": [
     {
@@ -27,7 +27,7 @@
     {
       "registryType": "npm",
       "identifier": "@faktry/mcp",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"
